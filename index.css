@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* General Styles */
+
+.hero-cta {
+    background: white;
+    border-radius: 2rem;
+    padding: 8px 16px;
+}
+
+h1, h2, h3 {
+    font-family: "Mona Sans", sans-serif;
+    /* color: #0f172a; */
+}
+
+p, button, a {
+    font-family: "Inter", sans-serif;
+}
+
+@media screen and (min-width: 1000px){
+    body {
+        /* padding: 0rem 5rem; */
+    }
+}
+
+/* Mobile Menu */
+.visible {
+    top: 0;
+}
+
+#mobile-menu {
+    transition: top 0.3s ease-in-out;
+}
+
+/* Services */
+.card{
+    height: 15rem;
+    width: 15rem;
+    background-color: #F6F6F6;
+    border-radius: 1rem;
+}
+
+/* li {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #F6F6F6;
+} */
