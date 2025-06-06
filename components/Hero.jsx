@@ -1,18 +1,12 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import React, { useRef } from 'react';
-import { IoIosArrowForward } from "react-icons/io";
+import Button from './Button';
 
 export default function Hero() {
   const heroText = useRef();
   const heroBtns = useRef();
   const heroUnderline = useRef();
-  const marqueeRef = useRef();
-
-  // Carousel
-  function pauseCarousel() {
-    
-  }
 
   // Slides array
   const images = [
@@ -63,44 +57,35 @@ export default function Hero() {
     );
 
     gsap.fromTo(
-      heroBtns.current.querySelectorAll('.hero-btns'),
+      heroBtns.current,
       {
-        y: 100,
+        x: -100,
         opacity: 0,
       },
       {
         opacity: 1,
-        delay: 1.4,
-        y: 0,
-        duration: 1,
-        stagger: 0.5,
-        ease: "power3.out"
-      }
-    );
-
-    gsap.fromTo(
-      marqueeRef.current,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        delay: 1.8,
-        duration: 1,
+        delay: 2.5,
+        x: 0,
+        duration: 0.5,
+        stagger: 0.4,
         ease: "power3"
       }
     );
   }, []);
 
   return (
-    <section className='flex flex-col gap-10 items-center px-5 overflow-x-hidden '>
-      <div className="text-center mt-15 md:mt-30 flex flex-col items-center gap-10" ref={heroText}>
-        <h1 className='hero-line text-5xl text-center flex flex-col lg:flex-row lg:gap-5 font-semibold text-(--color-navy) lg:text-8xl'>
+    <section className='flex flex-col gap-10 h-[70vh] justify-center items-center px-5 overflow-x-hidden'>
+      {/* <img className='absolute -z-1 opacity-20  w-[100vw]' src="\bg-2.png" alt="" /> */}
+      <div className="hero-imgs absolute border h-full w-full flex items-center px-20 -z-1">
+          <div className="one bg-(--color-navy) h-[10rem] w-[15rem] rounded-[1rem] -rotate-20"></div>
+      </div>
+      <div className="md:text-center mt-15 md:mt-30 flex flex-col md:items-center gap-10" ref={heroText}>
+        <h1 className='hero-line text-6xl md:text-center flex flex-col lg:flex-row lg:gap-5 font-semibold text-(--color-navy) lg:text-8xl md:text-7xl'>
           Mail Made
           <span className="relative inline-block">
             Simple
             <svg
-              className="absolute -z-1 -bottom-6 lg:-bottom-8 left-0 w-full h-auto"
+              className="absolute -z-1 -bottom-6 lg:-bottom-8 left-0 md:w-full w-[60%] h-auto"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 310 40"
               ref={heroUnderline}
@@ -115,40 +100,38 @@ export default function Hero() {
             </svg>
           </span>
         </h1>
-        <p className='text-center text-sm lg:text-lg text-gray-600 lg:w-[40%] hero-line'>
-          SVG Post is here to keep you connected. Whether you're sending a letter across town or a package across the country, our trusted service combines tradition with modern convenience—delivering reliability, speed, and care every step of the way.
+        <p className='text-sm text-justify md:text-center px-2 lg:text-lg text-gray-600 md:w-[70%] lg:w-[40%] hero-line'>
+          Whether you're sending a letter across town or a package across the world, SVG Post combines tradition with modern convenience—delivering reliability, speed, and care every step of the way.
         </p>
 
-        <div className='flex gap-3 lg:gap-5' ref={heroBtns}>
-          <button
-            className='hero-btns text-sm flex gap-1 items-center justify-center text-white p-3 rounded-full lg:pl-4 lg:pr-3'
-            style={{ backgroundColor: 'var(--color-navy)' }}
-          >
-            Track a Package <IoIosArrowForward />
-          </button>
-          <button className='hero-btns text-sm flex gap-1 items-center justify-center text-gray-700 bg-gray-300 lg:pl-4 lg:pr-3 p-3 rounded-full'>
-            View our Services <IoIosArrowForward />
-          </button>
+      {/* CTA Buttons */}
+        <div className='flex gap-3 lg:gap-7 mt-5 md:mt-0' ref={heroBtns}>
+          <Button  className='hero-btns'
+           text = "Track a Package"
+           textColor = "text-white"
+           bgColor ="bg-[#001A6E]"
+          />
+
+           <Button className='hero-btns'
+           text = "View our Services"
+           textColor = "text-gray-700"
+           bgColor ="bg-gray-300"
+          />
         </div>
       </div>
 
-      
-
       {/* Carousel */}
-      <div>
-        <div className="marquee-wrapper mt-5 lg:mt-50" ref={marqueeRef}>
-            <div className="marquee-track" onMouseEnter={pauseCarousel()}>
+      {/* <div>
+        <div className="marquee-wrapper mt-5 lg:mt-50">
+            <div className="marquee-track">
               {repeatedImages.map((src, index) => (
                 <div className="marquee-item h-[20rem] w-[15rem] lg:w-[30rem] lg:h-[40rem]" key={index}>
                   <img src={src} alt={`Slide ${index + 1}`} className="marquee-image" />
                 </div>
               ))}
             </div>
-        </div>
-    <div className=""></div>
-      </div>
-      <div></div>
-      
+        </div> */}
+    
       
     </section>
   );

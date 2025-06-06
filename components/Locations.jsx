@@ -1,36 +1,49 @@
-import React from 'react';
-import { IoMdAdd } from "react-icons/io";
-import SecondaryCard from './SecondaryCard';
+import { useRef } from 'react';
 import SectionHeading from './SectionHeading';
 import Accordion from './Accordion';
-import { GoArrowUpRight } from "react-icons/go";
 
-
-import { EffectCards } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-cards';
 import { Link } from 'react-router-dom';
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+
 export default function Locations() {
+  const locationsRef = useRef();
+
+  useGSAP(()=>{
+    gsap.fromTo(
+      locationsRef.current.querySelectorAll('.locations-content'),
+      {
+        opacity: 0,
+        y:50,
+      },
+      {
+        opacity: 1,
+        y:0,
+        duration: 0.8,
+        stagger: 0.3,
+        ease: "power3",
+        scrollTrigger: {
+          trigger: '#locations',
+          start: "top 60%"
+        }
+
+      }
+    )})
   return (
-    <section className='flex text-white flex-col items-center gap-10 bg-[#03154E] p-4 lg:flex-row lg:justify-center py-20'>
+    <section id='locations' className='flex text-white flex-col items-center gap-20 bg-[#001A6E] lg:flex-row lg:justify-center py-20 px-5' ref={locationsRef}>
 
       {/* Left Column */}
-      <div className="lg:w-1/2 flex flex-col gap-10">
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <hr className='w-[2rem] border-2' />
-          <h2 className='text-center text-2xl font-semibold'>
-            Multiple Locations <br /> Island-wide
-          </h2>
-          <hr className='w-[2rem] border-2' />
-        </div>
-        <p className='text-center'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab deserunt rerum consequuntur, 
-          accusantium voluptatum accusamus minima veritatis ex esse ad? Ab?
+      <div className=" flex flex-col locations-content">
+        <SectionHeading heading="Multiple Locations Island-wide" />
+        <p className='text-center text-sm md:text-lg lg:text-left mt-5'>
+          With 8 locations across St.Vincent and the Grenadines, SVG Post is ready to serve you.
         </p>
 
-        <div>
+        <div className='mt-15 py-4'>
           <Accordion 
             title="Windward"
             content={<ul>
@@ -57,8 +70,12 @@ export default function Locations() {
         </div>
       </div>
 
+      <div className='hidden md:block locations-content'>
+        <img src="/map.png" className='h-[40rem]' alt="" />
+      </div>
+
       {/* Swiper Effect Cards */}
-      <div className='w-[300px]'>
+      {/* <div className='w-[300px]'>
         <Swiper
           modules={[EffectCards]}
           effect="cards"
@@ -80,7 +97,7 @@ export default function Locations() {
             <p>Revenue Office</p>
           </SwiperSlide>
         </Swiper>
-      </div>
+      </div> */}
 
     </section>
   );

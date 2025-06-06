@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaArrowRight } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
+
 
 export default function Card(props) {
   return (
@@ -9,7 +11,7 @@ export default function Card(props) {
       <div className="flex flex-col gap-5">
         <h2 className="font-semibold text-xl lg:text-2xl text-gray-900 group-hover:text-white">{props.title}</h2>
         <p className="text-sm text-gray-500 group-hover:text-white">{props.text}</p>
-        <button className="group-hover:text-[#A0C2F4] group-hover:text-lg lg:mt-30 mt-2 font-bold text-[#383838] py-1 rounded transition flex items-center gap-1">Learn More <FaArrowRight className='group-hover:ml-2 transition-transform duration-500' /></button>
+        <button className="group-hover:text-[#A0C2F4] group-hover:text-lg lg:mt-30 mt-2 font-semibold text-[#383838] py-1 rounded transition flex items-center gap-1">Learn More <IoIosArrowForward className='group-hover:ml-2 transition-transform duration-500' /></button>
       </div>
     </div>
   );

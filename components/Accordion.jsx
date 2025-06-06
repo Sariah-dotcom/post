@@ -40,7 +40,7 @@ export default function Accordion({ title, content }) {
   };
 
   return (
-    <div className='w-full rounded-md p-4'>
+    <div className='w-full py-4'>
       <div 
         className='flex items-center justify-between cursor-pointer' 
         onClick={toggleAccordion}
@@ -48,7 +48,7 @@ export default function Accordion({ title, content }) {
         <h3 className='text-xl font-semibold'>{title}</h3>
         <MdAdd ref={iconRef} className='text-xl transition-transform duration-300' />
       </div>
-      <hr className='mt-2' />
+      <hr className='mt-2 border-[0.1rem]' />
       <div 
         ref={contentRef} 
         style={{ height: 0, overflow: 'hidden', opacity: 0 }}
